@@ -99,11 +99,3 @@ npm i -g loftschool-react-cli
 ```
 react-course -h homework-5-hoc
 ```
-
-#### 4. Начинайте обучение!
-
----
-
-<a href="https://loftschool.com/course/react/"><img align="left" width="50" height="50" title="Loftschool" src="https://loftschool.com/_nuxt/img/ec83394.svg"></a>
-
-Репозиторий создан для обучения на курсе «[React.js. Разработка веб-приложений](https://loftschool.com/course/react/)» от [Loftschool](https://loftschool.com/).
