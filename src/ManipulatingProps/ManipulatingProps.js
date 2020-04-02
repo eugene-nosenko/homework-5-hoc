@@ -16,7 +16,6 @@ const LoadingSpinner = () => <div>Loading...</div>;
 export const withLoading = WrappedComponent => {
   class Enhancer extends Component {
     render() {
-      console.log(WrappedComponent);
       if (this.props.loading) {
         return <LoadingSpinner />;
       }
@@ -40,7 +39,17 @@ export const withLoading = WrappedComponent => {
   const user = getLoggedInUser()
 */
 
-export const addLoggedInUser = () => {};
+export const addLoggedInUser = WrappedComponent => {
+  class Injector extends Component {
+    static displayName = 'InjectorHOC';
+
+    render() {
+      const user = getLoggedInUser();
+      return <WrappedComponent {...this.props} user={user} />;
+    }
+  }
+  return Injector;
+};
 
 /*
   Помимо добавления новых пропов можно модифицировать те,
@@ -54,4 +63,24 @@ export const addLoggedInUser = () => {};
   и передаст в обёрнутый компонент
 */
 
-export const withSort = () => {};
+export const withSort = WrappedComponent => {
+  class SortedBooksHOC extends Component {
+    static displayName = 'SortedBooksHOC';
+
+    render() {
+      const sortedList = this.props.books;
+
+      sortedList.sort((a, b) => {
+        const left = a.title.toLowerCase(),
+          right = b.title.toLowerCase();
+
+        if (left < right) return -1;
+        if (left > right) return 1;
+        return 0;
+      });
+
+      return <WrappedComponent {...this.props} books={sortedList} />;
+    }
+  }
+  return SortedBooksHOC;
+};

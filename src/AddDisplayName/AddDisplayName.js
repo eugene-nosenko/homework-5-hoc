@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 */
 
 export const withDisplayName = WrappedComponent => {
-  console.log(Component);
   return class extends Component {
     static displayName = `HOC${WrappedComponent.displayName || 'Component'}`;
     render() {
